@@ -1,0 +1,323 @@
+/* reset */
+html {
+	-ms-text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	box-sizing: border-box;
+}
+*, :after, :before {
+	box-sizing: inherit;
+}
+body {
+	font: 16px/1.5 Source Sans Pro, Helvetica Neue, Helvetica, Arial, sans-serif;
+	color: #323232;
+}
+body, ul {
+	margin: 0;
+}
+ul {
+	padding: 0;
+}
+.listProduct {
+	display: block;
+	padding-bottom: 90px;
+}
+a {
+	color: inherit;
+	text-decoration: none;
+}
+button {
+	border: none;
+	background: none;
+	margin: 0;
+	font: inherit;
+	letter-spacing: inherit;
+	-webkit-font-smoothing: inherit;
+}
+
+/* utility */
+.bold {
+	font-weight: 600;
+}
+
+/* icons */
+.icon {
+	display: inline-block;
+	vertical-align: middle;
+	fill: currentColor
+}
+.icon--dropdown {
+	margin-top: -2px;
+	fill: #757575
+}
+
+/* nav component */
+
+/* 
+	$nav-dropdown-max-height should be taller than maximum dropdown height so that dropdowns aren't cut off. 
+	It should also be taller than screen height on browsers (e.g. firefox, IE<10) where horizontal scroll bar can't be hidden
+	65em = 910px, plenty high for 1080p screens
+*/ 
+
+.navlist {
+	width: 100%;
+	height: 100px;
+	padding-top: 10px;
+	line-height: 2.5em;
+	background-color: #f5f5f5;
+	padding-bottom: 100px;
+	border-bottom: 1px solid #e0e0e0;
+	overflow: hidden;
+	-ms-overflow-style: none; 
+
+	/* 
+		height maintained by placeholder. 
+		this makes it easy to eventually make this menu position:fixed (if we ever want to do that)
+	*/
+	position: absolute;
+	z-index: 1;
+
+} 
+
+/* hide horizontal scrollbar */ 
+
+.navlist ::-webkit-scrollbar {
+	width: 0;
+}
+/* 
+	allow dropdown menus to be displayed below bar 
+	by allowing their tall (height: $nav-dropdown-max-height) containers to be visible 
+*/
+.nav--hovered, .nav--focused {
+	overflow: visible;
+}
+
+.nav__placeholder {
+	height: 2.5em;
+}
+
+.nav__outer-wrap {
+	display: flex;
+	justify-content: space-between;
+	height: 65em;
+	width: 1260px;
+	max-width: 100%;
+	margin: 0 auto;
+}
+
+/* Level 1 (header)
+   ========================================================================== */
+.nav__heading {
+	display: inline-block;
+	flex-shrink: 0;
+	flex-grow: 1;
+	height: 2.5em;
+
+	/* Hack: this compensates for the margin-left on the nav__item:first-child */
+	margin-right: -10em;
+	z-index: 2 /* so leftmost nav__item doesn't cover it */
+	
+}
+.nav__heading-caret {
+	color: #666;
+	font-size: 16px;
+	margin: 0 -.5em;
+}
+
+.nav__inner-wrap {
+	white-space: nowrap;
+	height: 65em;
+	display: flex;
+}
+
+.nav__item {
+	height: 2.5em;
+	flex-shrink: 0; /* for iOS */
+}
+
+/* Hack: ensure the first menu item has a little margin-left so it's not narrower 
+			 than it's dropdown menu if it's the only menu item. This is compensated 
+			 for by the nav__heading's margin-right */
+
+.nav__item:first-child {
+	margin-left: 10em;
+}
+
+/* so that items w/ children contain their dropdown menus */
+.nav__item.nav__menu-item--has-children {
+	position: relative;
+}
+
+/* space on right edge of .nav__inner-wrap below .nav__scroll--right */
+.nav__item--right-spacer {
+	display: none;
+	padding: 0 calc(2em / 2);
+	background-color: transparent !important;
+}
+.nav--scrollable .nav__item--right-spacer {
+	display: block;
+}
+
+.nav__link {
+	display: block;
+	padding: 0 10px;
+	cursor: pointer; /* needed for all menu items, even dropdown, so iOS devices can hover over them */
+	vertical-align: top; /* really only needed for children of .nav__heading so they line up with other links */
+}
+
+.nav__link--has-dropdown {
+	position: relative;
+}
+
+.nav__scroll {
+	position: absolute;
+	top: 0;
+	z-index: inherit;
+	padding: 0 0 .15em;
+	width: calc(2em / 2);
+	background-color: #eeeeee;
+	font-family: Gill Sans, Futura, sans-serif;
+	font-size: 200%;
+	line-height: 0;
+	height: calc( 2.5em / 2 ); /* b/c font-size is doubled */
+	cursor: pointer;
+	opacity: 0;
+	transition: opacity .3s;
+}
+
+.nav__scroll:focus {
+	opacity: 1;
+}
+.nav__scroll--left {
+	left: 0;
+	border-right: 1px solid #e0e0e0;
+	border-bottom: 1px solid #e0e0e0;
+}
+.nav__scroll--right {
+	right: 0;
+	border-left: 1px solid #e0e0e0;
+	border-bottom: 1px solid #e0e0e0;
+}
+.nav__scroll--visible {
+	opacity: .9;
+	transition: opacity .3s;
+}
+
+.nav__link--toplevel {
+	/* prevent text color from changing AFTER background color change on top-level links (not dropdowns) */
+	transition: none;
+}
+
+/* Levels 2 & 3 (header)
+   ========================================================================== */
+/* menu item hovered/focused */
+.nav__item:hover, .nav__item--has-focus {
+	background-color: rgb(222, 0, 0);
+	color: white;
+	border-bottom-color: rgb(13, 34, 166);
+	border-radius: 5%;
+}
+/* 
+		tiny pseudolement to cover bottom edge of adjacent menu items to prevent accidental hover
+		as mouse moves diagonally down from menu item to dropdown
+	 */
+.nav__item:hover .nav__link--has-dropdown:before, .nav__item--has-focus .nav__link--has-dropdown:before {
+	content: "";
+	display: block;
+	position: absolute;
+	bottom: 0;
+	width: calc(100% + 3em);
+	left: -1.5em;
+	height: 1.2em;/*background-color: red;*/
+}
+/* ensure tiny pseudoelement only shows up on left side (not right side) of final menu item */
+.nav__item:hover .nav__link--has-dropdown:nth-last-child(2):before, .nav__item--has-focus .nav__link--has-dropdown:nth-last-child(2):before {
+	width: calc(100% + 1.5em);
+}
+.nav__item:hover .nav__dropdown, .nav__item--has-focus .nav__dropdown {
+	display: block;
+}
+.nav__item:hover .icon--dropdown, .nav__item--has-focus .icon--dropdown {
+	fill: white;
+}
+.nav__item:hover .nav__menu-item, .nav__item--has-focus .nav__menu-item {
+	padding: 0;
+	margin-left: 1em;
+	line-height: 32px;
+}
+.nav__item:hover .nav__menu-item > a, .nav__item--has-focus .nav__menu-item > a {
+	display: inline-block;
+
+}
+.nav__item:hover .nav__menu-item > a:hover, .nav__item:hover .nav__menu-item > a:focus, .nav__item--has-focus .nav__menu-item > a:hover, .nav__item--has-focus .nav__menu-item > a:focus {
+	background-color: rgb(244, 244, 244);
+}
+.nav__item:hover .nav__menu-item > a:active, .nav__item--has-focus .nav__menu-item > a:active {
+	background-color: rgb(255, 230, 218);
+}
+
+.nav__item--repeated {
+	margin-left: 0 !important;
+}
+
+.nav__dropdown {
+	display: none;
+	position: absolute;
+	z-index: 2;
+	left: -1em;
+	padding: 1em;
+	background-color: inherit;
+	box-shadow: 1px 1px 4px rgba(150,150,150,.7);
+}
+
+.nav__item--right-aligned-dropdown .nav__dropdown {
+	left: auto;
+	right: 0;
+	top: 2.5em;
+}
+.nav--scrollable .nav__item--right-aligned-dropdown .nav__dropdown {
+	right: -2em;
+}
+
+/*Small Phones*/
+@media only screen and (max-width: 479px) {
+
+	/* entire site nav bar is scrollable */
+	.nav__outer-wrap {
+		overflow-x: auto;
+		overflow-y: hidden;
+		-webkit-overflow-scrolling: touch;
+	}
+}
+
+/*Large Phones on up*/
+@media only screen and (min-width: 480px) {
+
+	/* nav is scrollable EXCEPT for heading (first item) */
+	.nav__inner-wrap {
+		overflow-x: auto;
+		overflow-y: hidden;
+		-webkit-overflow-scrolling: touch;
+	}
+	.nav__heading {
+		background-color: #e0e0e0;
+	}
+}
+
+@media screen and (min-width: 1024px) {
+	.nav__outer-wrap {
+		 position: relative;  /*to contain nav__dropdown  */
+		 padding-right: 0;
+	}
+	.nav__heading {
+		background-color: transparent;
+	}
+	.nav__link {
+		padding: 0 1em;
+	}
+	/* remove link to see full menu (in footer) and the spacing for it */
+	.nav__scroll {
+		display: none;
+	}
+}

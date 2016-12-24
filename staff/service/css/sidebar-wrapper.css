@@ -1,0 +1,57 @@
+/*Sidebar*/
+#sidebar-wrapper{
+    z-index: 1;
+    position: absolute;
+    width: 0;
+    height: 100%;
+    overflow-y: hidden;
+    background: #06181a;
+    opacity: 0.9;
+}
+
+/*bagian konten*/
+#content-page{
+    width: 100%;
+    position: absolute;
+    padding: 10px;
+}
+
+
+/*merubah sidebar agar muncul ketika di klik*/
+#wrapper.displaySidebar #sidebar-wrapper{
+    width: 250px;
+}
+
+/*merubah bagian konten agar lebarnya berkurang setelah tombol di klik*/
+#wrapper.displaySidebar #content-page{
+    padding-left: 250px;
+}
+
+
+/* Styling pada sidebar */
+.sidebar-nav{
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar-nav li{
+    text-indent: 20px;
+    line-height: 40px;
+}
+
+.sidebar-nav a{
+    display: block;
+    text-decoration: none;
+    color: #ddd;
+}
+
+
+.sidebar-nav li a:hover{
+    background: #16a390;
+    font-weight: bold;
+    border-bottom-color: white;
+}
+
+.profile-picture{
+    margin: 40px 0 50px 70px;  /*top right bottom left*/
+}
