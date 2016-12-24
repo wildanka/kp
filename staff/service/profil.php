@@ -24,52 +24,51 @@
 					<div class="col-lg-12">
 						<a href="#" id="menu-toggle">Show</a>
 						<h3>Profil</h3>
-						<form class="form" method="post" action="profile_proses.php">
+						<form class="form">
 							<div class="form-group">
 									<label for="nama">NIP</label>
-									<input type="text" name="nip" class="form-control" placeholder="Nama Lengkap">
+									<input type="text" class="form-control" placeholder="Nama Lengkap">
 							</div>
 							<div class="form-group">
 									<label for="nama">Nama Lengkap</label>
-									<input type="text" name="nama" class="form-control" placeholder="Nama Lengkap">
-							</div>
-							<div class="form-group">
-									<label for="nama">Alamat</label>
-									<input type="text" name="alamat" class="form-control" placeholder="Nama Lengkap">
+									<input type="text" class="form-control" placeholder="Nama Lengkap">
 							</div>
 							<div class="form-group">
 									<label for="nama">Tempat Lahir</label>
-									<input type="text" name="tempatlahir" class="form-control" placeholder="Nama Lengkap">
+									<input type="text" class="form-control" placeholder="Nama Lengkap">
 							</div>
 							<div class="form-group">
 									<label for="nama">Tanggal Lahir</label>
-									<input type="text" name="tgllahir" class="form-control" placeholder="Nama Lengkap">
+									<input type="text" class="form-control" placeholder="Nama Lengkap">
+							</div>
+							<div class="form-group">
+									<label for="nama">Tanggal Masuk Kerja</label>
+									<input type="text" class="form-control" placeholder="Nama Lengkap">
 							</div>
 							<div class="form-group">
 									<label for="nama">No Handphone</label>
-									<input type="text" name="nohp" class="form-control" placeholder="Nama Lengkap">
+									<input type="text" class="form-control" placeholder="Nama Lengkap">
 							</div>
 							<div class="form-group">
 									<label for="nama">Tipe Akun</label>
-									<select class="form-control" name="tipeakun">
-										<option value="Showroom">Admin Showroom</option>
-										<option value="Service">Admin Service</option>									
+									<select class="form-control">
+										<option>Admin Showroom</option>
+										<option>Admin Service</option>									
 									</select>
 							</div>
 							<div class="form-group">
 									<label for="nama">Username</label>
-									<input type="text" name="username" class="form-control" placeholder="Nama Lengkap">
+									<input type="text" class="form-control" placeholder="Nama Lengkap">
 							</div>
 							<div class="form-group">
 									<label for="nama">Password</label>
-									<input type="password" name="password" class="form-control" placeholder="Password">
+									<input type="password" class="form-control" placeholder="Password">
 							</div>
 							<div class="form-group">
 									<label for="foto">Upload Foto</label>
-								    <input type="file" name="upload" id="exampleInputFile"><br>
+								    <input type="file" id="exampleInputFile"><br>
 									<p class="help-block">Maksimum ukuran foto 3 MB</p>
 							</div>
-							<input type="submit" value="Simpan">
 						</form>
 						
 					</div>

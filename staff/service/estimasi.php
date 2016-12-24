@@ -15,6 +15,7 @@ if (!@$_SESSION['service']){
 	?>
 </head>
 <body>
+<form action="" method="post">
 	<!--seluruh halaman-->
 	<div id="wrapper">
 
@@ -31,18 +32,24 @@ if (!@$_SESSION['service']){
 						<a href="#" id="menu-toggle">Show</a>
 						<h3>Data Estimasi Harga</h3>
 						<p> Halaman untuk menambah, mengedit dan menghapus data estimasi harga, Silahkan pilih data : 
-						<p> <a href="#"> - Jasa </a></p>
-						<p> <a href="#"> - Data Sparepart </a></p>
-						<p> <a href="#"> - Data Jasa </a></p>
-						<p> <a href="#"> - Data Jasa </a></p>
-						<p> <a href="#"> - Data Jasa </a></p>
-											
+						<input type="submit" name="Edit1" id="Edit1" value="Jasa">
+						<input type="submit" name="Edit2" id="Edit2" value="Sparepart">
+						<input type="submit" name="Edit3" id="Edit3" value="Balancing">
+						<hr>				
+						<?php
+						if (isset($_POST['Edit1']))
+						{
+							include "jasa.php";
+							}
+
+?>
 					</div>
 				</div>
 			</div>
 		</div>
 
 	</div>
+</form>
 
     <!--berisi toggle action untuk wrapper-->
     <script src="js/js-essential.js"></script>
