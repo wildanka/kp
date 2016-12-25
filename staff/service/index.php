@@ -5,6 +5,8 @@ if (!@$_SESSION['service']){
 	header("location: ../index.php");
 }
 
+echo "tes";
+
 ?>
 
 <html>
