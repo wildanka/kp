@@ -103,6 +103,7 @@ if($res)
 			<td>Paket</td>
 			<td>Item</td>
 			<td>Harga</td>
+			<!-- add list here -->
 		</tr>
 		<?php 
 		$i=0;
@@ -113,6 +114,7 @@ if($res)
 				<td><?php echo $data['namapaket'];?></td>
 				<td><?php echo $data['namajasa'];?></td>
 				<td><?php echo $data['hargajasa'];?></td>
+				<!-- add list here -->
 			</tr>
 		<?php
 		}
@@ -126,6 +128,7 @@ if($res)
 				<td><?php echo $data['namapaket'];?></td>
 				<td><?php echo $data['namasparepart'];?></td>
 				<td><?php echo $data['hargasparepart'];?></td>
+				<!-- add list here -->
 			</tr>
 		<?php
 		}
@@ -139,6 +142,7 @@ if($res)
 				<td><?php echo $data['namapaket'];?></td>
 				<td><?php echo $data['namabalancing_4_roda'];?></td>
 				<td><?php echo $data['hargabalancing_4_roda'];?></td>
+				<!-- add list here -->
 			</tr>
 		<?php
 		}
@@ -152,6 +156,7 @@ if($res)
 				<td><?php echo $data['namapaket'];?></td>
 				<td><?php echo $data['namaspooring'];?></td>
 				<td><?php echo $data['hargaspooring'];?></td>
+				<!-- add list here -->
 			</tr>
 		<?php
 		}
@@ -165,6 +170,7 @@ if($res)
 				<td><?php echo $data['namapaket'];?></td>
 				<td><?php echo $data['namaserviceac'];?></td>
 				<td><?php echo $data['hargaserviceac'];?></td>
+				<!-- add list here -->
 			</tr>
 		<?php
 		}
