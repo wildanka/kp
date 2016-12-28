@@ -56,46 +56,42 @@ if(isset($_POST['lihat']))
 {
 $id_mobil=$_POST['id_mobil'];
 $id_paket=$_POST['id_paket'];
-$sql="SELECT paket.`nama` as namapaket , jasa.`nama` as namajasa, jasa.`harga` as hargajasa, mobil.`nama` as namamobil
+$sql1="SELECT paket.id_paket as idpaket, paket.`nama` as namapaket , jasa.id_jasa as idjasa, jasa.`nama` as namajasa, jasa.`harga` as hargajasa, mobil.id_mobil as idmobil, mobil.`nama` as namamobil
 FROM jasa JOIN paket_jasa ON jasa.`id_jasa` = paket_jasa.`id_jasa` 
 JOIN paket ON paket_jasa.`id_paket` = paket.`id_paket` 
 JOIN mobil ON paket_jasa.`id_mobil` =  mobil.`id_mobil`
-WHERE mobil.`id_mobil`= '$id_mobil' AND paket.`id_paket` = '$id_paket' 
+WHERE mobil.`id_mobil`= '$id_mobil' AND paket.`id_paket` = '$id_paket'"; 
 
-UNION
-
-SELECT paket.`nama` as namapaket , sparepart.`nama` as namasparepart, sparepart.`harga` as hargasparepart, mobil.`nama` as namamobil
+$sql2="SELECT paket.id_paket as idpaket, paket.`nama` as namapaket , sparepart.id_sparepart as idsparepart, sparepart.`nama` as namasparepart, sparepart.`harga` as hargasparepart, mobil.id_mobil as idmobil, mobil.`nama` as namamobil
 FROM sparepart JOIN paket_sparepart ON sparepart.`id_sparepart` = paket_sparepart.`id_sparepart` 
 JOIN paket ON paket_sparepart.`id_paket` = paket.`id_paket` 
 JOIN mobil ON paket_sparepart.`id_mobil` =  mobil.`id_mobil`
-WHERE mobil.`id_mobil`= '$id_mobil' AND paket.`id_paket` = '$id_paket'  
+WHERE mobil.`id_mobil`= '$id_mobil' AND paket.`id_paket` = '$id_paket'";
 
-UNION
-
-SELECT paket.`nama` as namapaket, balancing_4_roda.`nama` as namabalancing, balancing_4_roda.`harga` as hargabalancing, mobil.`nama` as namamobil
-FROM balancing_4_roda JOIN paket_balancing_4_roda ON balancing_4_roda.`id_balancing` = paket_balancing_4_roda.`id_balancing` 
-JOIN paket ON paket_balancing_4_roda.`id_paket` = paket.`id_paket` 
-JOIN mobil ON paket_balancing_4_roda.`id_mobil` =  mobil.`id_mobil`
-WHERE mobil.`id_mobil`= '$id_mobil' AND paket.`id_paket` = '$id_paket'  
-
-UNION
-
-SELECT paket.`nama` as namapaket, spooring.`nama` as namaspooring, spooring.`harga` as namaspooring, mobil.`nama` as namamobil
+$sql3="SELECT paket.id_paket as idpaket, paket.`nama` as namapaket, spooring.id_spooring as idspooring, spooring.`nama` as namaspooring, spooring.`harga` as hargaspooring, mobil.id_mobil as idmobil, mobil.`nama` as namamobil
 FROM spooring JOIN `paket_spooring` ON spooring.`id_spooring` = paket_spooring.`id_spooring` 
 JOIN paket ON paket_spooring.`id_paket` = paket.`id_paket` 
 JOIN mobil ON paket_spooring.`id_mobil` =  mobil.`id_mobil`
-WHERE mobil.`id_mobil`= '$id_mobil' AND paket.`id_paket` = '$id_paket'  
+WHERE mobil.`id_mobil`= '$id_mobil' AND paket.`id_paket` = '$id_paket'";
 
-UNION
+$sql4="SELECT paket.id_paket as idpaket, paket.`nama` as namapaket, balancing_4_roda.id_balancing as idbalancing, balancing_4_roda.`nama` as namabalancing, balancing_4_roda.`harga` as hargabalancing, mobil.id_mobil as idmobil, mobil.`nama` as namamobil
+FROM balancing_4_roda JOIN paket_balancing_4_roda ON balancing_4_roda.`id_balancing` = paket_balancing_4_roda.`id_balancing` 
+JOIN paket ON paket_balancing_4_roda.`id_paket` = paket.`id_paket` 
+JOIN mobil ON paket_balancing_4_roda.`id_mobil` =  mobil.`id_mobil`
+WHERE mobil.`id_mobil`= '$id_mobil' AND paket.`id_paket` = '$id_paket'";
 
-SELECT paket.`nama` as namapaket, service_ac.`nama` as namaserviceac, service_ac.`harga` as hargaserviceac, mobil.`nama` as namamobil
+$sql5="SELECT paket.id_paket as idpaket, paket.`nama` as namapaket, service_ac.id_service_ac as idserviceac, service_ac.`nama` as namaserviceac, service_ac.`harga` as hargaserviceac, mobil.id_mobil as idmobil, mobil.`nama` as namamobil
 FROM service_ac JOIN `paket_service_ac` ON service_ac.`id_service_ac` = paket_service_ac.`id_service_ac` 
 JOIN paket ON paket_service_ac.`id_paket` = paket.`id_paket` 
 JOIN mobil ON paket_service_ac.`id_mobil` =  mobil.`id_mobil`
 WHERE mobil.`id_mobil`= '$id_mobil' AND paket.`id_paket` = '$id_paket'";
 
-$res=mysqli_query($link,$sql);
-if($res)
+$res1=mysqli_query($link,$sql1);
+$res2=mysqli_query($link,$sql2);
+$res3=mysqli_query($link,$sql3);
+$res4=mysqli_query($link,$sql4);
+$res5=mysqli_query($link,$sql5);
+if($res1)
 {
 ?>
 	<table>
@@ -103,74 +99,89 @@ if($res)
 			<td>Paket</td>
 			<td>Item</td>
 			<td>Harga</td>
-			<!-- add list here -->
 		</tr>
+
 		<?php 
 		$i=0;
-		while ($data=mysqli_fetch_array($res)) {
+		while ($data1=mysqli_fetch_array($res1)) {
+			$i++;
+		?>
+			<tr>
+				<td><?php echo $data1['namapaket'];?></td>
+				<td><a href='admin_edit.php?id_paket=$data1[id_paket];id_jasa=$data1[id_jasa];id_mobil=$data1[id_mobil]'><?php echo $data1['namajasa'];?></a></td>
+				<td><?php echo $data1['hargajasa'];?></td>
+			</tr>
+		<?php
+		}
+		?>
+<?php
+}
+if($res2)
+{
+?>
+		<?php 
+		$i=0;
+		while ($data2=mysqli_fetch_array($res2)) {
+			$i++;
+		?>
+			<tr>
+				<td><?php echo $data2['namapaket'];?></td>
+				<td><a href='admin_edit.php?id_paket=$data2[id_paket];id_sparepart=$data2[id_sparepart];id_mobil=$data2[id_mobil]'><?php echo $data2['namasparepart'];?></a></td>
+				<td><?php echo $data2['hargasparepart'];?></td>
+			</tr>
+		<?php
+		}
+		?>
+<?php
+}
+if($res3)
+{
+?>
+		<?php 
+		$i=0;
+		while ($data3=mysqli_fetch_array($res3)) {
+			$i++;
+		?>
+			<tr>
+				<td><?php echo $data3['namapaket'];?></td>
+				<td><a href='admin_edit.php?id_paket=$data3[id_paket];id_spooring=$data3[id_spooring];id_mobil=$data3[id_mobil]'><?php echo $data3['namaspooring'];?></td>
+				<td><?php echo $data3['hargaspooring'];?></td>
+			</tr>
+		<?php
+		}
+		?>
+<?php
+}
+if($res4)
+{
+?>
+		<?php 
+		$i=0;
+		while ($data4=mysqli_fetch_array($res4)) {
 			$i++;
 		?>
 			<tr>
 				<td><?php echo $data['namapaket'];?></td>
-				<td><?php echo $data['namajasa'];?></td>
-				<td><?php echo $data['hargajasa'];?></td>
-				<!-- add list here -->
+				<td><a href='admin_edit.php?id_paket=$data4[id_paket];id_balancing=$data4[id_balancing];id_mobil=$data4[id_mobil]'><?php echo $data['namabalancing'];?></td>
+				<td><?php echo $data['hargabalancing'];?></td>
 			</tr>
 		<?php
 		}
 		?>
+<?php
+}
+if($res5)
+{
+?>
 		<?php 
-		$j=0;
-		while ($data=mysqli_fetch_array($res)) {
-			$j++;
+		$i=0;
+		while ($data5=mysqli_fetch_array($res5)) {
+			$i++;
 		?>
 			<tr>
 				<td><?php echo $data['namapaket'];?></td>
-				<td><?php echo $data['namasparepart'];?></td>
-				<td><?php echo $data['hargasparepart'];?></td>
-				<!-- add list here -->
-			</tr>
-		<?php
-		}
-		?>
-		<?php 
-		$k=0;
-		while ($data=mysqli_fetch_array($res)) {
-			$k++;
-		?>
-			<tr>
-				<td><?php echo $data['namapaket'];?></td>
-				<td><?php echo $data['namabalancing_4_roda'];?></td>
-				<td><?php echo $data['hargabalancing_4_roda'];?></td>
-				<!-- add list here -->
-			</tr>
-		<?php
-		}
-		?>
-		<?php 
-		$l=0;
-		while ($data=mysqli_fetch_array($res)) {
-			$l++;
-		?>
-			<tr>
-				<td><?php echo $data['namapaket'];?></td>
-				<td><?php echo $data['namaspooring'];?></td>
-				<td><?php echo $data['hargaspooring'];?></td>
-				<!-- add list here -->
-			</tr>
-		<?php
-		}
-		?>
-		<?php 
-		$m=0;
-		while ($data=mysqli_fetch_array($res)) {
-			$m++;
-		?>
-			<tr>
-				<td><?php echo $data['namapaket'];?></td>
-				<td><?php echo $data['namaserviceac'];?></td>
+				<td><a href='admin_edit.php?id_paket=$data5[id_paket];id_service_ac=$data5[id_service_ac];id_mobil=$data5[id_mobil]'><?php echo $data['namaserviceac'];?></td>
 				<td><?php echo $data['hargaserviceac'];?></td>
-				<!-- add list here -->
 			</tr>
 		<?php
 		}
