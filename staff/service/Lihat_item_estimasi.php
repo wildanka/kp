@@ -16,18 +16,33 @@ if (!@$_SESSION['service']){
 <body>
 
 <form action="" method="post">
-	<h4> Lihat Data Item Berdasarkan :  </h4>
-	Filter By : <select name="paket">
-		<option value="jasa">Jasa</option>
-		<option value="sparepart">Sparepart</option>
-		<option value="balancing_4_roda">Balancing</option>
-		<option value="spooring">Spooring</option>
-		<option value="service_ac">Service AC</option>
-	</select>
-	<input type="submit" name="ok" value="Filter"></input>	
+	<table width="100%">
+		<tr>
+			<td width="50%">
+				<input type="text" size="50" name="cari" placeholder="Cari Data Berdasarkan Nama Item"></input>
+				<input type="submit" name='caridata' value="Cari Data"></input>
+			</td>
+			<td width="50%" align="right">
+				Filter By : <select name="paket">
+								<option value="jasa">Jasa</option>
+								<option value="sparepart">Sparepart</option>
+								<option value="balancing_4_roda">Balancing</option>
+								<option value="spooring">Spooring</option>
+								<option value="service_ac">Service AC</option>
+							</select>
+				<input type="submit" name="ok" value="Filter"></input>	
+			</td>
+		</tr>
+	</table>
 </form>
+<hr>
+
 <?php
-if(!isset($_POST['paket'])){
+if((!isset($_POST['ok'])) && (!isset($_POST['caridata']))){
+?>
+<h2 align="center"> Data Item Paket </h2>
+<?php
+
 	$query_tampil_semua_data = "SELECT * FROM jasa UNION 
 								SELECT * FROM sparepart UNION 
 								SELECT * FROM balancing_4_roda UNION 
@@ -36,11 +51,11 @@ if(!isset($_POST['paket'])){
 	if($res_semua_data)
 	{
 		?>
-			<table>
+			<table width="100%" border="1">
 				<tr>
-					<td>Id</td>
-					<td>Nama Item</td>
-					<td>Harga(Rp)</td>
+					<td align="center">Id Item</td>
+					<td align="center">Nama Item</td>
+					<td align="center">Harga(Rp)</td>
 					<td></td>
 				</tr>
 			<?php		
@@ -59,11 +74,76 @@ if(!isset($_POST['paket'])){
 			</table>
 		<?php
 	}
-}else{
+// menampilkan data cari
+}else if (isset($_POST['caridata'])){
+	$key_cari = $_POST['cari'];
+	$query_cari_data = "SELECT * FROM jasa WHERE nama='$key_cari' UNION
+						SELECT * FROM sparepart WHERE nama='$key_cari' UNION
+						SELECT * FROM balancing_4_roda WHERE nama='$key_cari' UNION
+						SELECT * FROM spooring WHERE nama='$key_cari' UNION
+						SELECT * FROM service_ac WHERE nama='$key_cari'";
+	$result_cari = mysqli_query($link,$query_cari_data);
+
+	if ($result_cari) {
+		?>
+			<table width="100%" border="1">
+				<tr>
+					<td align="center">Id Item</td>
+					<td align="center">Nama Item</td>
+					<td align="center">Harga(Rp)</td>
+					<td></td>
+				</tr>
+			<?php		
+				$i=0;
+				while($data=mysqli_fetch_array($result_cari)){
+					$i++;
+			?>
+				<tr>
+					<td><?php echo $data['id_jasa'];?></td>
+					<td><?php echo $data['nama'];?></td>
+					<td><?php echo $data['harga'];?></td>
+					<td>
+						<?php
+							$karakter = $data['id_jasa'];
+							$id_ = substr($karakter,0,1);
+							$id_2 = substr($karakter,0,2);
+							if($id_ == 'j'){
+								echo "
+										<a href='edit_jasa.php?id_jasa=$karakter'>
+										<img src='img/edit.png'/></a>";
+								}else if(($id_ == 'S') && ($id_2 != 'SP')){
+									echo "
+										<a href='edit_sparepart.php?id_sparepart=$karakter'>
+										<img src='img/edit.png'/></a>";
+									}else if($id_2 == 'SP'){
+										echo "
+											<a href='edit_spooring.php?id_spooring=$karakter'>
+											<img src='img/edit.png'/></a>";
+										}else if($id_ == 'B'){
+											echo "
+											<a href='edit_balancing.php?id_balancing=$karakter'>
+											<img src='img/edit.png'/></a>";
+											}else{
+												echo "
+													<a href='edit_service_ac.php?id_service_ac=$karakter'>
+													<img src='img/edit.png'/></a>";
+											}
+						?>
+					</td>
+				</tr>	
+			<?php
+		}
+		?>
+			</table>
+		<?php
+	}else{
+		echo "Error : ".mysqli_query($link);
+	}
+//menampilkan data berdasarkan kategori
+}else if(isset($_POST['ok'])){
 		$select= $_POST['paket'];
 		$query = "SELECT * FROM $select";
 		$result = mysqli_query($link,$query);
-		
 		if($result){
 		?>
 			<table>
