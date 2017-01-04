@@ -112,6 +112,7 @@ if($res1)
 				echo "<a href='paket_jasa_edit.php?id_paket=$data1[idpaket]&id_mobil=$data1[idmobil]&id_jasa=$data1[idjasa]'>";?>
 				<?php echo $data1['namajasa'];?></a></td>
 				<td><?php echo $data1['hargajasa'];?></td>
+				<td><?php echo "<a href='paket_jasa_hapus.php?id_paket=$data1[idpaket]&id_mobil=$data1[idmobil]&id_jasa=$data1[idjasa]'><img src='hapus.png' border='0'></a>";?></td>
 			</tr>
 		<?php
 		}
@@ -132,6 +133,7 @@ if($res2)
 				echo "<a href='paket_sparepart_edit.php?id_paket=$data2[idpaket]&id_mobil=$data2[idmobil]&id_sparepart=$data2[idsparepart]'>";?>
 				<?php echo $data2['namasparepart'];?></a></td>
 				<td><?php echo $data2['hargasparepart'];?></td>
+				<td><?php echo "<a href='paket_sparepart_hapus.php?id_paket=$data2[idpaket]&id_mobil=$data2[idmobil]&id_sparepart=$data2[idsparepart]'><img src='hapus.png' border='0'></a>";?></td>
 			</tr>
 		<?php
 		}
@@ -152,6 +154,7 @@ if($res3)
 				echo "<a href='paket_spooring_edit.php?id_paket=$data3[idpaket]&id_mobil=$data3[idmobil]&id_spooring=$data3[idspooring]'>";?>
 				<?php echo $data3['namaspooring'];?></td>
 				<td><?php echo $data3['hargaspooring'];?></td>
+				<td><?php echo "<a href='paket_spooring_hapus.php?id_paket=$data3[idpaket]&id_mobil=$data3[idmobil]&id_spooring=$data3[idspooring]'><img src='hapus.png' border='0'></a>";?></td>
 			</tr>
 		<?php
 		}
@@ -169,9 +172,10 @@ if($res4)
 			<tr>
 				<td><?php echo $data['namapaket'];?></td>
 				<td><?php 
-				echo "<a href='paket_balancing_edit.php?id_paket=$data4[idpaket]&id_mobil=$data4[idmobil]&id_jasa=$data4[idbalancing]'>";?>
+				echo "<a href='paket_balancing_edit.php?id_paket=$data4[idpaket]&id_mobil=$data4[idmobil]&id_balancing=$data4[idbalancing]'>";?>
 				<?php echo $data4['namabalancing'];?></td>
 				<td><?php echo $data4['hargabalancing'];?></td>
+				<td><?php echo "<a href='paket_balancing_hapus.php?id_paket=$data4[idpaket]&id_mobil=$data4[idmobil]&id_balancing=$data4[idbalancing]'><img src='hapus.png' border='0'></a>";?></td>
 			</tr>
 		<?php
 		}
@@ -189,9 +193,10 @@ if($res5)
 			<tr>
 				<td><?php echo $data['namapaket'];?></td>
 				<td><?php 
-				echo "<a href='paket_service_ac_edit.php?id_paket=$data5[idpaket]&id_mobil=$data5[idmobil]&id_jasa=$data5[idserviceac]'>";?>
+				echo "<a href='paket_service_ac_edit.php?id_paket=$data5[idpaket]&id_mobil=$data5[idmobil]&id_service_ac=$data5[idserviceac]'>";?>
 				<?php echo $data5['namaserviceac'];?></td>
 				<td><?php echo $data5['hargaserviceac'];?></td>
+				<td><?php echo "<a href='paket_service_ac_hapus.php?id_paket=$data5[idpaket]&id_mobil=$data5[idmobil]&id_service_ac=$data5[idserviceac]'><img src='hapus.png' border='0'></a>";?></td>
 			</tr>
 		<?php
 		}
