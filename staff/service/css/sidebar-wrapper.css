@@ -5,8 +5,65 @@
     width: 0;
     height: 100%;
     overflow-y: hidden;
-    background: #06181a;
+    background: rgba(6, 17, 23, 0.98);
+    /*background: #102131;*/
     opacity: 0.9;
+    margin-top: 59px;
+    overflow-y: scroll;
+}
+
+li{
+    list-style-type: none;
+}
+
+#garis-dasbor{
+    margin-top: -0px;
+}
+
+.geser-kanan {
+    text-align: right;
+}
+
+.hr-menu{
+    width: 80%;
+    opacity: 0.5;
+}
+
+.hr-menu0{
+    width: 80%;
+    opacity: 0.5;
+    margin-bottom: 0px;  
+}
+
+.hr-menu1{
+    width: 80%;
+    opacity: 0.5;
+    margin-top: 0px;
+    margin-bottom: 0px;  
+}
+
+.hr-special{
+    margin-bottom: 0px;
+}
+
+.hr-special1{
+    margin-top: 0px;
+    margin-bottom: 0px;    
+}
+
+.big-menu{
+    margin-top: -20px;
+    margin-bottom: -20px;
+}
+
+.anak-menu{
+    margin-bottom: -20px;
+}
+
+.panel-body{
+    margin-left: -25px;
+    margin-top: -15px;
+    margin-bottom: -15px;
 }
 
 /*bagian konten*/
@@ -14,6 +71,7 @@
     width: 100%;
     position: absolute;
     padding: 10px;
+    
 }
 
 
@@ -47,11 +105,18 @@
 
 
 .sidebar-nav li a:hover{
-    background: #16a390;
+    background: rgb(6, 11, 17);
+    /*background: #16a390;*/
     font-weight: bold;
     border-bottom-color: white;
 }
 
 .profile-picture{
     margin: 40px 0 50px 70px;  /*top right bottom left*/
+}
+
+.foto-block{
+    background-color: #3fa5d4;
+    /*background-color: #3ab2dd;*/
+    /*color: #ffffff;*/
 }
