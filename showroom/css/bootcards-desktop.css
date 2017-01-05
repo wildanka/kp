@@ -524,9 +524,10 @@ a.list-group-item.bootcards-list-subheading {
   padding: 8px; }
 
 .bootcards-summary-item {
-  background: #777777;
+  background: #ffffff;
+  //background: #777777;
   display: block;
-  border-radius: 4px;
+  border-radius: 0px;
   padding: 25px 10px;
   text-align: center;
   position: relative;
@@ -537,7 +538,9 @@ a.list-group-item.bootcards-list-subheading {
     padding: 15px 5px; } }
 .bootcards-summary-item:hover {
   text-decoration: none;
-  background: #ffffff;
+  background: #c3c3c3;
+/*  background: #cdcdcd;*/
+/*  background: #c8c8c8;*/
   color: #030202;
   }
 
