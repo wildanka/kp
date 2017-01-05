@@ -1,0 +1,78 @@
+		/*
+		which color? you can try one of these
+		1b6d85
+		1ba89c
+		*/
+		#menu-toggle{
+			position: absolute;
+			margin: 1px 0px 0px -20px;
+			background-color: #06181a;
+			opacity: 0.9;
+			color: #fff;
+			padding: 17px 20px 21px 20px ;
+			border-radius: 0px;
+		}
+
+		#menu-toggle:hover{
+			background-color: #1bb7ab;
+		}
+
+		.header-judul{
+			position: static;
+		}
+
+		.content{
+			position: static;
+			padding: 0 0 0 20px;
+			margin-top: 20px;
+		}
+		.center{
+			text-align: center;
+		}
+
+		.glyphicon-sedang{
+			font-size: 1.5em;
+		}
+
+		.bekgron{
+			background-color: rgba(6, 17, 23, 0.98);
+			/*background-color: #06181a;*/
+			opacity: 0.9;
+			padding: 0.5%;
+			margin: -15px;
+			color: #fff;
+		}
+
+		.naik45{
+            margin-top: -35px;
+        }
+        .naik30{
+            margin-top: -5px;
+            padding-bottom: 45px;
+        }
+
+        .putih{
+            color: #ffffff;
+        }
+
+		.tebal{
+			border-top: 1px solid #656565;
+			border-width: 2px;
+			opacity: 5.0;
+			color: #0f0f0f;
+			display: block;
+			margin-left: -20px;
+		}
+
+		.geser-kiri{
+			margin-left: -20px;
+		}
+
+		.right{
+			margin-right: -20px;
+		}
+
+		.posisi_foto_profil{
+			margin-top: 45px;
+			margin-left: 20px;
+		}
