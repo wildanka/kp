@@ -3,3 +3,4 @@
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="css/sidebar-wrapper.css">
+	<link rel="stylesheet" href="css/styling.css">
