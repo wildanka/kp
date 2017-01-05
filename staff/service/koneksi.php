@@ -1,9 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-</head>
-<body>
+
 <?php
 function koneksi_db()
 {
@@ -19,5 +14,3 @@ function koneksi_db()
 	return $link;
 }	
 ?>
-</body>
-</html>
